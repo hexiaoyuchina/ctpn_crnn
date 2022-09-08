@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 import numpy as np
 import numpy.random as npr
+import sys
+print(sys.path)
 from utils.bbox.bbox import bbox_overlaps
 
 from utils.bbox.bbox_transform import bbox_transform
