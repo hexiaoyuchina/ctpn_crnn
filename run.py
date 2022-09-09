@@ -5,12 +5,13 @@ import torch
 from torch.autograd import Variable
 from crnn import utils
 from crnn import dataset
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 import crnn.models.crnn as crnn
 import config
 
 crnn_model_path = config.reg_model
-img_path = config.corp_image_path
+corp_images_dir = config.corp_image_path
+line_image_dir = config.write_line_path
 
 def get_image_path(image_dir):
     files = []
@@ -36,9 +37,12 @@ def recognition():
     converter = utils.strLabelConverter(alphabet)
 
     transformer = dataset.resizeNormalize((100, 32))
-    image_paths = get_image_path(img_path)
-    for image_path in image_paths:
-        image = Image.open(image_path).convert('L')
+    corp_image_paths = get_image_path(corp_images_dir)
+    line_image_path = get_image_path(line_image_dir)[0]
+    line_image = Image.open(line_image_path)
+    draw = ImageDraw.Draw(line_image)
+    for corp_image_path in corp_image_paths:
+        image = Image.open(corp_image_path).convert('L')
         image = transformer(image)
         if torch.cuda.is_available():
             image = image.cuda()
@@ -55,11 +59,21 @@ def recognition():
         raw_pred = converter.decode(preds.data, preds_size.data, raw=True)
         sim_pred = converter.decode(preds.data, preds_size.data, raw=False)
         print('%-20s => %-20s' % (raw_pred, sim_pred))
-        with open(os.path.join(img_path, os.path.splitext(os.path.basename(image_path))[0]) + "text.txt",
+
+        with open(os.path.join(corp_images_dir, os.path.splitext(os.path.basename(corp_image_path))[0]) + ".txt",
+             "r") as f:
+            boxes = f.read().split(',')
+            left = int(boxes[0]) - 20
+            top = int(boxes[1])+20
+        # # 字体的格式 这里的SimHei.ttf需要有这个字体
+        # fontStyle = ImageFont.truetype("SimHei.ttf", text_size, encoding="utf-8")
+        draw.text((left, top), sim_pred, fill=(255, 0, 0))
+
+        with open(os.path.join(corp_images_dir, os.path.splitext(os.path.basename(corp_image_path))[0]) + "_text.txt",
                   "w") as f:
             f.write(sim_pred)
 
-
+    line_image.save(os.path.join(line_image_dir, 'res.jpg'), jpg)
 
 if __name__ == '__main__':
     detect()
