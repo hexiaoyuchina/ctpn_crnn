@@ -19,7 +19,17 @@ gpu = config.gpu
 checkpoint_path = config.checkpoint_path
 
 
-
+def get_image_path(image_dir):
+    files = []
+    exts = ['jpg', 'png', 'jpeg', 'JPG']
+    for parent, dirnames, filenames in os.walk(image_dir):
+        for filename in filenames:
+            for ext in exts:
+                if filename.endswith(ext):
+                    files.append(os.path.join(parent, filename))
+                    break
+    print('Find {} images'.format(len(files)))
+    return files
 
 
 def resize_image(img):

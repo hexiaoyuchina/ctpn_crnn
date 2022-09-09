@@ -7,7 +7,6 @@ pip install  numpy==1.19.5 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install  tensorflow-gpu==1.15.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install  Cython==0.24.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install ipython==5.1.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
-conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch
-
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 #cd ./ctpn/lib/utils
 #sh make.sh
