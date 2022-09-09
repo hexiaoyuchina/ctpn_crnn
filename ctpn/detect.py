@@ -115,8 +115,9 @@ def detect():
                     for index in range(0, 8, 2):
                         x, y = box[index:index+2]
                         print(x,y)
-                        x *= rh
-                        y *= rw
+                        x /= rh
+                        y /= rw
+
                         real_index.append(str(int(x)))
                         real_index.append(str(int(y)))
                     line = ','.join(real_index)
