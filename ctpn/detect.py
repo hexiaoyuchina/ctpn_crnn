@@ -50,7 +50,7 @@ def resize_image(img):
     return re_im, (new_h / img_size[0], new_w / img_size[1])
 
 
-def get_real_bbox(box):
+def get_real_bbox(box, rh, rw):
     real_index = []
     for index in range(0, 8, 2):
         x, y = box[index:index + 2]
@@ -121,7 +121,7 @@ def detect():
                 cv2.imwrite(cop_path, crop)
                 with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(im_fn))[0]) + '_'+str(i)+".txt",
                           "w") as f:
-                    line = get_real_bbox(box)
+                    line = get_real_bbox(box, rh, rw)
                     line += "\r\n"
                     f.writelines(line)
 
@@ -133,6 +133,6 @@ def detect():
             with open(os.path.join(write_line_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",
                       "w") as f:
                 for i, box in enumerate(boxes):
-                    line = get_real_bbox(box)
+                    line = get_real_bbox(box, rh, rw)
                     line += "," + str(scores[i]) + "\r\n"
                     f.writelines(line)
