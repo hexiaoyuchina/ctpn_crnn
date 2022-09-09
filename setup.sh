@@ -1,3 +1,4 @@
+
 #conda create --name OCR python=3.6
 #source activate OCR
 pip install lmdb -i https://mirror.baidu.com/pypi/simple
