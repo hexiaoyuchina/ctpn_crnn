@@ -1,17 +1,14 @@
 # coding=utf-8
 from ctpn.detect import detect
-from configparser import ConfigParser
 import torch
 from torch.autograd import Variable
 from crnn import utils
 from crnn import dataset
 from PIL import Image
-import models.crnn as crnn
+import crnn.models.crnn as crnn
+import config
 
-
-conf = ConfigParser()
-conf.read('config.ini', encoding='utf-8')
-crnn_model_path = conf.get('crnn', "reg_model")
+crnn_model_path = config.reg_model
 
 def recognition():
     alphabet = '0123456789abcdefghijklmnopqrstuvwxyz'
@@ -47,7 +44,7 @@ def recognition():
 
 
 if __name__ == '__main__':
-    tf.app.run(detect)
+    detect()
     recognition()
 
 

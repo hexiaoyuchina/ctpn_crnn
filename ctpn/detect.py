@@ -3,21 +3,20 @@ import os
 import shutil
 import sys
 import time
-from configparser import ConfigParser
 import cv2
+
 import numpy as np
 import tensorflow as tf
+
 from ctpn.nets import model_train as model
 from ctpn.utils.rpn_msr.proposal_layer import proposal_layer
 from ctpn.utils.text_connector.detectors import TextDetector
 
-
-conf = ConfigParser()
-conf.read('../config.init', encoding='utf-8')
-img_path = conf.get("ctpn", "img_path")
-corp_image_path = conf.get("ctpn", "corp_image_path")
-gpu = conf.get("ctpn", 'gpu')
-checkpoint_path = conf.get("ctpn", "checkpoint_path")
+import config
+img_path = config.img_path
+corp_image_path = config.corp_image_path
+gpu = config.gpu
+checkpoint_path = config.checkpoint_path
 
 
 def get_image_path(image_dir):
@@ -51,7 +50,7 @@ def resize_image(img):
     return re_im, (new_h / img_size[0], new_w / img_size[1])
 
 
-def detect(argv=None):
+def detect():
     if os.path.exists(corp_image_path):
         shutil.rmtree(corp_image_path)
     os.makedirs(corp_image_path)
@@ -115,10 +114,10 @@ def detect(argv=None):
                     line += "\r\n"
                     f.writelines(line)
 
-            #     cv2.polylines(img, [box[:8].astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0),
-            #                   thickness=2)
-            # img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
-            # cv2.imwrite(os.path.join(corp_image_path, os.path.basename(im_fn)), img[:, :, ::-1])
+                cv2.polylines(img, [box[:8].astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0),
+                              thickness=2)
+            img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
+            cv2.imwrite(os.path.join(corp_image_path, os.path.basename(im_fn)), img[:, :, ::-1])
 
             with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",
                       "w") as f:
@@ -126,6 +125,3 @@ def detect(argv=None):
                     line = ",".join(str(box[k]) for k in range(8))
                     line += "," + str(scores[i]) + "\r\n"
                     f.writelines(line)
-
-if __name__ == '__main__':
-    tf.app.run()
