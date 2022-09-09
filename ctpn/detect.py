@@ -111,8 +111,10 @@ def detect():
                 with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(im_fn))[0]) + '_'+str(i)+".txt",
                           "w") as f:
                     real_index = []
+                    print(box[:8])
                     for index in range(0, 8, 2):
                         x, y = box[index:index+2]
+                        print(x,y)
                         x *= rh
                         y *= rw
                         real_index.append(str(int(x)))
