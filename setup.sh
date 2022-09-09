@@ -9,5 +9,5 @@ pip install  Cython==0.24.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install ipython==5.1.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch
 
-cd ./ctpn/lib/ctpn_utils
+cd ./ctpn/lib/utils
 sh make.sh

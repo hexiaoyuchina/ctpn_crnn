@@ -3,11 +3,11 @@ import numpy as np
 import numpy.random as npr
 import sys
 print(sys.path)
-from ctpn.ctpn_utils.bbox.bbox import bbox_overlaps
+from ctpn.utils.bbox.bbox import bbox_overlaps
 
-from ctpn.ctpn_utils.bbox.bbox_transform import bbox_transform
-from ctpn.ctpn_utils.rpn_msr.config import Config as cfg
-from ctpn.ctpn_utils.rpn_msr.generate_anchors import generate_anchors
+from ctpn.utils.bbox.bbox_transform import bbox_transform
+from ctpn.utils.rpn_msr.config import Config as cfg
+from ctpn.utils.rpn_msr.generate_anchors import generate_anchors
 
 DEBUG = False
 
