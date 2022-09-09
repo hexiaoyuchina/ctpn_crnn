@@ -73,7 +73,7 @@ def recognition():
                   "w") as f:
             f.write(sim_pred)
 
-    line_image.save(os.path.join(line_image_dir, 'res.jpg'), jpg)
+    line_image.save(os.path.join(line_image_dir, 'res.jpg'))
 
 if __name__ == '__main__':
     detect()
