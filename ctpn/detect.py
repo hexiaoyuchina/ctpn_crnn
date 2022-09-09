@@ -119,7 +119,7 @@ def detect():
             img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
             cv2.imwrite(os.path.join(write_line_path, os.path.basename(im_fn)), img[:, :, ::-1])
 
-            with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",
+            with open(os.path.join(write_line_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",
                       "w") as f:
                 for i, box in enumerate(boxes):
                     line = ",".join(str(box[k]) for k in range(8))
