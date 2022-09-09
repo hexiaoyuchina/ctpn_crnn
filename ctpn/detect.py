@@ -11,8 +11,8 @@ from ctpn.nets import model_train as model
 from ctpn.utils.rpn_msr.proposal_layer import proposal_layer
 from ctpn.utils.text_connector.detectors import TextDetector
 
-con = ConfigParser()
-conf = con.read('../config.init', encoding='utf-8')
+conf = ConfigParser()
+conf.read('../config.init', encoding='utf-8')
 img_path = conf.get("ctpn", "img_path")
 corp_image_path = conf.get("ctpn", "corp_image_path")
 gpu = conf.get("ctpn", 'gpu')

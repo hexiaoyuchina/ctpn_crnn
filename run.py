@@ -9,8 +9,8 @@ from PIL import Image
 import models.crnn as crnn
 
 
-con = ConfigParser()
-conf = con.read('config.ini', encoding='utf-8')
+conf = ConfigParser()
+conf.read('config.ini', encoding='utf-8')
 crnn_model_path = conf.get('crnn', "reg_model")
 
 def recognition():
