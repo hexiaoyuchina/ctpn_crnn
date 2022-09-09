@@ -110,7 +110,12 @@ def detect():
                 cv2.imwrite(cop_path, crop)
                 with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(im_fn))[0]) + '_'+str(i)+".txt",
                           "w") as f:
-                    line = ",".join(str(box[k]) for k in range(8))
+                    line = ''
+                    for index in range(0, 8, 2):
+                        x, y = box[index:index+2]
+                        x *= rh
+                        y *= rw
+                        line = line + str(x) + str(w)
                     line += "\r\n"
                     f.writelines(line)
 
