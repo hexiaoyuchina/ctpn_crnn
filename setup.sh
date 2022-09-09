@@ -1,5 +1,5 @@
-conda create --name OCR python=3.6
-source activate OCR
+#conda create --name OCR python=3.6
+#source activate OCR
 
 pip install opencv-python==4.6.0.66 -i https://mirror.baidu.com/pypi/simple
 pip install  matplotlib==3.3.4 -i https://pypi.tuna.tsinghua.edu.cn/simple
