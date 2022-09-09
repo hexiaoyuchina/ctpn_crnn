@@ -63,8 +63,8 @@ def recognition():
         with open(os.path.join(corp_images_dir, os.path.splitext(os.path.basename(corp_image_path))[0]) + ".txt",
              "r") as f:
             boxes = f.read().split(',')
-            left = int(boxes[0]) - 20
-            top = int(boxes[1])+20
+            left = int(boxes[0])
+            top = int(boxes[1])
         # # 字体的格式 这里的SimHei.ttf需要有这个字体
         fontStyle = ImageFont.truetype("font/simhei.ttf", 100)
         draw.text((left, top), sim_pred, fill=(255, 0, 0), font=fontStyle)
