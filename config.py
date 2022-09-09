@@ -1,5 +1,6 @@
 img_path = 'data/image/'
 corp_image_path = 'data/corp_image/'
+write_line_path = 'data/line_image'
 gpu = '0'
 checkpoint_path = 'ctpn/checkpoints_mlt'
 reg_model = 'crnn/data/crnn.pth'

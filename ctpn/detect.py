@@ -17,7 +17,7 @@ img_path = config.img_path
 corp_image_path = config.corp_image_path
 gpu = config.gpu
 checkpoint_path = config.checkpoint_path
-
+write_line_path = config.write_line_path
 
 def get_image_path(image_dir):
     files = []
@@ -117,7 +117,7 @@ def detect():
                 cv2.polylines(img, [box[:8].astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0),
                               thickness=2)
             img = cv2.resize(img, None, None, fx=1.0 / rh, fy=1.0 / rw, interpolation=cv2.INTER_LINEAR)
-            cv2.imwrite(os.path.join(corp_image_path, os.path.basename(im_fn)), img[:, :, ::-1])
+            cv2.imwrite(os.path.join(write_line_path, os.path.basename(im_fn)), img[:, :, ::-1])
 
             with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(im_fn))[0]) + ".txt",
                       "w") as f:

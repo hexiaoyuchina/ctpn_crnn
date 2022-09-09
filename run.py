@@ -11,6 +11,7 @@ import config
 
 crnn_model_path = config.reg_model
 img_path = config.corp_image_path
+
 def get_image_path(image_dir):
     files = []
     exts = ['jpg', 'png', 'jpeg', 'JPG']
@@ -54,6 +55,10 @@ def recognition():
         raw_pred = converter.decode(preds.data, preds_size.data, raw=True)
         sim_pred = converter.decode(preds.data, preds_size.data, raw=False)
         print('%-20s => %-20s' % (raw_pred, sim_pred))
+        with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(image_path))[0]) + "text.txt",
+                  "w") as f:
+            f.write(sim_pred)
+
 
 
 if __name__ == '__main__':
