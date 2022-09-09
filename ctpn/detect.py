@@ -11,6 +11,7 @@ from ctpn.nets import model_train as model
 from ctpn.utils.rpn_msr.proposal_layer import proposal_layer
 from ctpn.utils.text_connector.detectors import TextDetector
 
+
 conf = ConfigParser()
 conf.read('../config.init', encoding='utf-8')
 img_path = conf.get("ctpn", "img_path")
