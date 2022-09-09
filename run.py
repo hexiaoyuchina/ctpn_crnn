@@ -66,9 +66,9 @@ def recognition():
             left = int(boxes[0]) - 20
             top = int(boxes[1])+20
         # # 字体的格式 这里的SimHei.ttf需要有这个字体
-        # fontStyle = ImageFont.truetype("SimHei.ttf", text_size, encoding="utf-8")
-        draw.text((left, top), sim_pred, fill=(255, 0, 0))
-
+        fontStyle = ImageFont.truetype("font/SimHei.ttf", 15, encoding="utf-8")
+        draw.text((left, top), sim_pred, fill=(255, 0, 0), font=fontStyle)
+        # draw.text((left, top), text, text_color, font=fontStyle)
         with open(os.path.join(corp_images_dir, os.path.splitext(os.path.basename(corp_image_path))[0]) + "_text.txt",
                   "w") as f:
             f.write(sim_pred)
