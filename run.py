@@ -8,8 +8,8 @@ import cv2
 import numpy as np
 import tensorflow as tf
 from ctpn.nets import model_train as model
-from ctpn.ctpnutils.rpn_msr.proposal_layer import proposal_layer
-from ctpn.ctpnutils.text_connector.detectors import TextDetector
+from ctpn.utils.rpn_msr.proposal_layer import proposal_layer
+from ctpn.utils.text_connector.detectors import TextDetector
 
 import torch
 from torch.autograd import Variable
