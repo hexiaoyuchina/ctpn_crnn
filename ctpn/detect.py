@@ -115,8 +115,8 @@ def detect():
                         x, y = box[index:index+2]
                         x *= rh
                         y *= rw
-                        real_index.append(str(x))
-                        real_index.append(str(w))
+                        real_index.append(str(int(x)))
+                        real_index.append(str(int(w)))
                     line = ','.join(real_index)
                     line += "\r\n"
                     f.writelines(line)
