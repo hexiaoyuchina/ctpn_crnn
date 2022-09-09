@@ -9,7 +9,7 @@ import crnn.models.crnn as crnn
 import config
 
 crnn_model_path = config.reg_model
-
+img_path = config.img_path
 def get_image_path(image_dir):
     files = []
     exts = ['jpg', 'png', 'jpeg', 'JPG']
