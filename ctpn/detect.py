@@ -116,7 +116,7 @@ def detect():
                         x *= rh
                         y *= rw
                         real_index.append(str(int(x)))
-                        real_index.append(str(int(w)))
+                        real_index.append(str(int(y)))
                     line = ','.join(real_index)
                     line += "\r\n"
                     f.writelines(line)
