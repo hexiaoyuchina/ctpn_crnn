@@ -55,7 +55,7 @@ def recognition():
         raw_pred = converter.decode(preds.data, preds_size.data, raw=True)
         sim_pred = converter.decode(preds.data, preds_size.data, raw=False)
         print('%-20s => %-20s' % (raw_pred, sim_pred))
-        with open(os.path.join(corp_image_path, os.path.splitext(os.path.basename(image_path))[0]) + "text.txt",
+        with open(os.path.join(img_path, os.path.splitext(os.path.basename(image_path))[0]) + "text.txt",
                   "w") as f:
             f.write(sim_pred)
 
