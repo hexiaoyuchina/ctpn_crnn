@@ -1,4 +1,5 @@
 # coding=utf-8
+import os
 from ctpn.detect import detect
 import torch
 from torch.autograd import Variable
